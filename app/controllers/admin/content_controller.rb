@@ -6,6 +6,13 @@ class Admin::ContentController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
+  def merge
+    @article = Article.find(params[:id])
+    @article.merge_with(params[:merge_with])
+    @article.save 
+    redirect_to "/admin/content/edit/#{params[:id]}"  
+  end 
+
   def auto_complete_for_article_keywords
     @items = Tag.find_with_char params[:article][:keywords].strip
     render :inline => "<%= raw auto_complete_result @items, 'name' %>"
@@ -140,6 +147,9 @@ class Admin::ContentController < Admin::BaseController
   def real_action_for(action); { 'add' => :<<, 'remove' => :delete}[action]; end
 
   def new_or_edit
+    # Check if Admin 
+    @merge_check = (current_user.admin?) && (params[:action].match("edit"))
+
     id = params[:id]
     id = params[:article][:id] if params[:article] && params[:article][:id]
     @article = Article.get_or_build_article(id)
