@@ -19,6 +19,7 @@ Feature: Merge Articles
 	Scenario: When articles are merged, the merged article should contain the text of both previous articles.
 		Given I am logged into the admin panel 
 		And I am on the edit article page for the first article
+		Then I should see "Merge Articles"
 		When I fill in "merge_with" with "3"
 		And I press "Merge"
 		Then show me the page 

@@ -468,8 +468,10 @@ class Article < Content
   end
 
   def merge_with(id)
-    puts id 
     article = Article.find(id)
-    self.body += article.body 
+    self.body += article.body
+    for comment in article.comments 
+        self.comments.push(comment) 
+    end 
   end 
 end

@@ -105,10 +105,6 @@ And /^I am logged into the publisher panel$/ do
   end
 end
 
-And /^I am on the edit page$/ do 
-
-end 
-
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
