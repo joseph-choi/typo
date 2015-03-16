@@ -41,6 +41,44 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+  User.create!({:login => 'publisher',
+                :password => 'aa123',
+                :email => 'moe@snow.com',
+                :profile_id => 1,
+                :name => 'publisher',
+                :state => 'active'})
+  Article.create!({:allow_comments => true, 
+                :allow_pings => true, 
+                :author => "Joe", 
+                :body => "Article 1.", 
+                :guid => "1bf3e2ca-ed7b-4562-8a4a-8ce8438822c6", 
+                :id => 2, 
+                :permalink => "hello-world", 
+                :post_type => "read", 
+                :published => true, 
+                :published_at => "2012-06-09 21:51:55 UTC", 
+                :settings => {"password"=>nil}, 
+                :state => "published", 
+                :text_filter_id => 5, 
+                :title => "Hello World", 
+                :type => "Article", 
+                :user_id => 2})
+  Article.create!({:allow_comments => true, 
+                :allow_pings => true, 
+                :author => "Gilbert", 
+                :body => "Article 2.", 
+                :guid => "1bf3e2ca-ed7b-4562-8a4a-8ce8438822c2", 
+                :id => 3, 
+                :permalink => "hello-universe", 
+                :post_type => "read", 
+                :published => true, 
+                :published_at => "2012-06-10 21:51:55 UTC", 
+                :settings => {"password"=>nil}, 
+                :state => "published", 
+                :text_filter_id => 5, 
+                :title => "Hello Universe", 
+                :type => "Article", 
+                :user_id => 3})
 end
 
 And /^I am logged into the admin panel$/ do
@@ -54,6 +92,22 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
+
+And /^I am logged into the publisher panel$/ do
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'publisher'
+  fill_in 'user_password', :with => 'aa123'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
+
+And /^I am on the edit page$/ do 
+
+end 
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
