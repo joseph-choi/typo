@@ -22,7 +22,7 @@ Feature: Merge Articles
 		Then I should see "Merge Articles"
 		When I fill in "merge_with" with "3"
 		And I press "Merge"
-		Then show me the page 
+		When I click on "Preview" 
 		Then I should see "Hello World"
 		And I should see "2 comments"
 		And I should see "Article 1. Article 2."
