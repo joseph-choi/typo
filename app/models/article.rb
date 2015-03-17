@@ -467,8 +467,11 @@ class Article < Content
     return from..to
   end
 
-  def merge_with(id)
-    article = Article.find(id)
+  def merge_with(other_article_id)
+    if self.id == other_article_id || Article.exists?(other_article_id)
+      return
+    end 
+    article = Article.find(other_article_id)
     self.body += article.body
     for comment in article.comments 
         self.comments.push(comment) 
