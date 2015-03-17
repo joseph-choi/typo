@@ -467,6 +467,8 @@ class Article < Content
     return from..to
   end
 
+  public 
+
   def merge_with(other_article_id)
     if self.id == other_article_id 
       return

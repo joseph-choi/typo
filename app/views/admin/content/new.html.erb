@@ -4,14 +4,9 @@
 
 <% if @merge_check %>
 	<h4>Merge Articles</h4>
-		<%= form_tag :controller => admin_content_path, :action => 'merge', :method => 'post' ,:id => @article.id do %>
-			<%= label_tag :merge_with, "Article ID" %>
-			<%= text_field_tag 'merge_with' %>
-			<%= submit_tag "Merge", :id => 'merge'  %>
-		<% end %> 
-<!-- <!-- <!-- 	<%= form_tag({:controller => admin_content_path, :action => 'edit', :id => @article.id}, :method => 'post') do %> 
+	<%= form_tag({:controller => admin_content_path, :action => 'merge', :id => @article.id}, :method => 'post') do %> 
 		<%= label_tag(:merge_with, "Article ID") %>
 		<%= text_field_tag(:merge_with) %>
 		<%= submit_tag("Merge") %>
-	<% end %>   --> --> -->
+	<% end %>  
 <% end %> 
