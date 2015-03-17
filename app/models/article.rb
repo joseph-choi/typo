@@ -478,5 +478,6 @@ class Article < Content
     for comment in article.comments 
         self.comments.push(comment) 
     end 
+    Article.delete(other_article_id)
   end 
 end
