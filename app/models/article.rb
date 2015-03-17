@@ -468,7 +468,7 @@ class Article < Content
   end
 
   def merge_with(other_article_id)
-    if self.id == other_article_id || Article.exists?(other_article_id)
+    if self.id == other_article_id 
       return
     end 
     article = Article.find(other_article_id)
