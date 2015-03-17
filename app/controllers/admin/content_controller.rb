@@ -7,6 +7,10 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def merge
+    if current_user.admin? == false
+      return 
+    end 
+
     @article = Article.find(params[:id])
     @article.merge_with(params[:merge_with])
     @article.save 
