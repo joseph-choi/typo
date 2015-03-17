@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   match '/author(/:id)', :to => 'authors#show', :format => false
 
   # New
-  match '/admin/content/merge(/:id)', :to => 'content#merge'
+  match '/admin/content/merge(/:id)', :to => 'admin/content#merge'
 
   # ThemesController
   scope :controller => 'theme', :filename => /.*/ do
