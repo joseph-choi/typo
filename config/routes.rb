@@ -88,6 +88,9 @@ Rails.application.routes.draw do
   match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'
   match '/author(/:id)', :to => 'authors#show', :format => false
 
+  # New
+  match '/admin/content/merge/(:/id)', :to => 'content#merge'
+
   # ThemesController
   scope :controller => 'theme', :filename => /.*/ do
     get 'stylesheets/theme/:filename', :action => 'stylesheets', :format => false
